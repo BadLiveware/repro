@@ -6,6 +6,8 @@ This standalone program demonstrates that `NpgsqlYugabyteDB` 9.0.2.2 can close a
 System.InvalidOperationException: Internal Npgsql bug: connection is in state Open but connector is in state Closed
 ```
 
+Upstream issue: [yugabyte/yugabyte-db#32654](https://github.com/yugabyte/yugabyte-db/issues/32654)
+
 The program starts one ephemeral `yugabytedb/yugabyte:2025.2.3.0-b149` node with Testcontainers. It does not require an application schema or external YugabyteDB deployment. The upstream `Npgsql` package is used only for the startup readiness probe; the datasource under test is built by `NpgsqlYugabyteDB`.
 
 ## Prerequisites
