@@ -21,10 +21,16 @@ System.InvalidOperationException: Internal Npgsql bug: connection is in state Op
 
 ### Reproduction
 
-This directory contains the complete standalone Testcontainers project. It requires only Docker and the .NET 8 SDK:
+A complete standalone Testcontainers reproduction is available at:
+
+https://github.com/BadLiveware/repro/tree/main/ybnpgsql/clear-closes-busy-connector
+
+It requires only Docker and the .NET 8 SDK:
 
 ```bash
-dotnet run -c Release -f net8.0
+git clone https://github.com/BadLiveware/repro.git
+cd repro/ybnpgsql/clear-closes-busy-connector
+dotnet run -c Release
 ```
 
 The program performs this sequence against one ephemeral YugabyteDB node:
@@ -58,7 +64,7 @@ The checked-out connector is closed immediately while the logical connection rem
 The same package, server, and sequence passes when cluster-aware load balancing is disabled:
 
 ```bash
-YB_REPRO_SMART=0 dotnet run -c Release -f net8.0
+YB_REPRO_SMART=0 dotnet run -c Release
 ```
 
 Expected control output:
